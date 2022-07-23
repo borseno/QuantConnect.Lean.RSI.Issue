@@ -1,0 +1,11 @@
+2022-07-23T15:58:46.9081856Z TRACE:: Config.Get(): Configuration key not found. Key: data-provider - Using default value: DefaultDataProvider
+2022-07-23T15:58:46.9103825Z TRACE:: Config.Get(): Configuration key not found. Key: map-file-provider - Using default value: LocalDiskMapFileProvider
+2022-07-23T15:58:46.9146388Z TRACE:: Config.Get(): Configuration key not found. Key: factor-file-provider - Using default value: LocalDiskFactorFileProvider
+2022-07-23T15:58:46.9459654Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2022-07-23T15:58:46.9600452Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2022-07-23T15:58:46.9627258Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../Data/
+2022-07-23T15:58:47.0259740Z TRACE:: Config.Get(): Configuration key not found. Key: map-file-provider - Using default value: LocalDiskMapFileProvider
+2022-07-23T15:58:47.0352101Z TRACE:: Config.Get(): Configuration key not found. Key: binance-api-url - Using default value: https://api.binance.com
+2022-07-23T15:58:47.0357467Z TRACE:: Config.Get(): Configuration key not found. Key: binance-websocket-url - Using default value: wss://stream.binance.com:9443/ws
+2022-07-23T15:58:47.1324416Z TRACE:: Config.GetValue(): binance-maximum-websocket-connections - Using default value: 0
+2022-07-23T15:58:47.1355446Z TRACE:: BrokerageMultiWebSocketSubscriptionManager(): WebSocket connections will be restarted every: 23:45:00

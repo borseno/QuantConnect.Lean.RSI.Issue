@@ -44,6 +44,7 @@ namespace QuantConnect.Algorithm.CSharp
         private const Resolution RESOLUTION = Resolution.Hour;
 
         private RelativeStrengthIndex _rsi;
+        private SimpleMovingAverage _rsiSma;
 
         public BuggyRSIAlgorithm() {
         }
@@ -55,7 +56,7 @@ namespace QuantConnect.Algorithm.CSharp
         {
             SetTimeZone(NodaTime.DateTimeZone.Utc);
             SetStartDate(2022, 06, 2); // Set Start Date
-            SetEndDate(2022, 06, 30); // Set End Date
+            SetEndDate(2022, 07, 30); // Set End Date
 
             // Set Strategy Cash (USDT)
             SetCash(QUOTE, 10000m);
@@ -69,7 +70,8 @@ namespace QuantConnect.Algorithm.CSharp
 
             var symbol = AddCrypto(SYMBOL, RESOLUTION).Symbol;
 
-            _rsi = RSI(symbol, 10, MovingAverageType.Simple, RESOLUTION);
+            _rsi = RSI(symbol, 14, MovingAverageType.Wilders, RESOLUTION);
+            _rsiSma = IndicatorExtensions.SMA(_rsi, 10);
         }
 
         // Sell all ETH holdings with a limit order at 2% above the current price
@@ -120,9 +122,7 @@ namespace QuantConnect.Algorithm.CSharp
 
             // Expected RSI on 30th Jun using period=10, type=SimpleMovingAverage 20:00 = 25.38
 
-            if (data.Time.Day == 30 && data.Time.Hour == 20) {
-                Log($"{data.Time} RSI: ({_rsi})");
-            }
+            Log($"{data.Time} RSI: ({_rsiSma.Current.Value})");
         }
 
         public override void OnOrderEvent(OrderEvent orderEvent)

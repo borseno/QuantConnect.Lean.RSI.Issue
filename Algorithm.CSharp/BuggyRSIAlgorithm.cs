@@ -70,7 +70,8 @@ namespace QuantConnect.Algorithm.CSharp
 
             var symbol = AddCrypto(SYMBOL, RESOLUTION).Symbol;
 
-            _rsi = RSI(symbol, 14, MovingAverageType.Wilders, RESOLUTION);
+            _rsi = RSI(symbol, 10, MovingAverageType.Wilders, RESOLUTION);
+            EnableAutomaticIndicatorWarmUp = true;
             _rsiSma = IndicatorExtensions.SMA(_rsi, 10);
         }
 
@@ -121,8 +122,10 @@ namespace QuantConnect.Algorithm.CSharp
             }
 
             // Expected RSI on 30th Jun using period=10, type=SimpleMovingAverage 20:00 = 25.38
-
-            Log($"{data.Time} RSI: ({_rsiSma.Current.Value})");
+            
+            if (_rsiSma.IsReady && _rsi.IsReady) {
+                Log($"{data.Time - TimeSpan.FromHours(1)} SMA: ({_rsiSma.Current.Value}) RSI: {_rsi.Current.Value}");
+            }
         }
 
         public override void OnOrderEvent(OrderEvent orderEvent)
